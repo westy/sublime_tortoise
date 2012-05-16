@@ -477,11 +477,12 @@ class TortoiseHg(Tortoise):
 
     def log(self, path=None):
         path = os.path.relpath(path, self.root_dir)
+        args = [self.path, 'log', '--nofork', path]
+
         settings = sublime.load_settings('Tortoise.sublime-settings')
         if settings.get('use_workbench'):
-            path = os.path.split(path)[0]
+            args = [self.path, 'log', '--nofork']
 
-        args = [self.path, 'log', '--nofork', path]
         ForkGui(args, self.root_dir)
 
     def blame(self, path=None):
