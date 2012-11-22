@@ -354,6 +354,7 @@ class Tortoise():
 
     def process_status(self, vcs, path):
         global file_status_cache
+        status = ''
         settings = sublime.load_settings('Tortoise.sublime-settings')
         if path in file_status_cache and file_status_cache[path]['time'] > \
                 time.time() - settings.get('cache_length'):
