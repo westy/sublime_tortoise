@@ -32,17 +32,17 @@ class TortoiseCommand():
 
         try:
             vcs = TortoiseSVN(settings.get('svn_tortoiseproc_path'), path)
-        except (RepositoryNotFoundError):
+        except RepositoryNotFoundError:
             pass
 
         try:
             vcs = TortoiseGit(settings.get('git_tortoiseproc_path'), path)
-        except (RepositoryNotFoundError):
+        except RepositoryNotFoundError:
             pass
 
         try:
             vcs = TortoiseHg(settings.get('hg_hgtk_path'), path)
-        except (RepositoryNotFoundError):
+        except RepositoryNotFoundError:
             pass
 
         if vcs == None:
@@ -60,7 +60,7 @@ def handles_not_found(fn):
     def handler(self, *args, **kwargs):
         try:
             fn(self, *args, **kwargs)
-        except (NotFoundError) as (exception):
+        except NotFoundError as exception:
             sublime.error_message('Tortoise: ' + str(exception))
     return handler
 
@@ -72,7 +72,7 @@ def invisible_when_not_found(fn):
             if res != None:
                 return res
             return True
-        except (NotFoundError):
+        except NotFoundError:
             return False
     return handler
 
@@ -359,7 +359,7 @@ class Tortoise():
         if path in file_status_cache and file_status_cache[path]['time'] > \
                 time.time() - settings.get('cache_length'):
             if settings.get('debug'):
-                print 'Fetching cached status for %s' % path
+                print('Fetching cached status for', path);
             return file_status_cache[path]['status']
 
         if settings.get('debug'):
@@ -367,7 +367,7 @@ class Tortoise():
 
         try:
             status = vcs.check_status(path)
-        except (Exception) as (exception):
+        except Exception as exception:
             sublime.error_message(str(exception))
 
         file_status_cache[path] = {
@@ -376,8 +376,7 @@ class Tortoise():
         }
 
         if settings.get('debug'):
-            print 'Fetching status for %s in %s seconds' % (path,
-                str(time.time() - start_time))
+            print('Fetching status for', path, 'in',str(time.time() - start_time), 'seconds');
 
         return status
 
@@ -482,7 +481,7 @@ class TortoiseHg(Tortoise):
             try:
                 self.set_binary_path('TortoiseHg\\thgw.exe',
                     'thgw.exe', 'hg_hgtk_path')
-            except (NotFoundError):
+            except NotFoundError:
                 self.set_binary_path('TortoiseHg\\hgtk.exe',
                     'thgw.exe (for TortoiseHg v2.x) or hgtk.exe (for ' +
                     'TortoiseHg v1.x)', 'hg_hgtk_path')
