@@ -564,7 +564,8 @@ class NonInteractiveProcess():
         stdout = proc.stdout.read()
 
         if stdout:
-            return stdout.replace('\r\n', '\n').rstrip(' \n\r')
+            # All sorts of grief here if don't convert to string it seems...
+            return str(stdout).replace('\r\n', '\n').rstrip(' \n\r')
         else:
             return ''
 
