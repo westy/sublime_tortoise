@@ -561,7 +561,12 @@ class NonInteractiveProcess():
             stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
             startupinfo=startupinfo, cwd=self.cwd)
 
-        return proc.stdout.read().replace('\r\n', '\n').rstrip(' \n\r')
+        stdout = proc.stdout.read()
+
+        if stdout:
+            return stdout.replace('\r\n', '\n').rstrip(' \n\r')
+        else:
+            return ''
 
 
 class SVN():
