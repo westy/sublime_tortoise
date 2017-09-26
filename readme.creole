@@ -1,10 +1,8 @@
 = Sublime Tortoise
 
-Keyboard shortcuts and menu entries for using TortoiseSVN, TortoiseGit and
-TortoiseHg from within [[http://www.sublimetext.com/2|Sublime Text 2]].
-
-Please see http://wbond.net/sublime_packages/tortoise for install instructions,
-screenshots and documentation.
+A modified version of [[https://packagecontrol.io/packages/Tortoise|Sublime Tortoise]]
+to provide keyboard shortcuts and menu entries for using TortoiseSVN, TortoiseGit and
+TortoiseHg from within [[http://www.sublimetext.com/3|Sublime Text 3]].
 
 == License
 
@@ -12,7 +10,7 @@ All of Sublime Tortoise is licensed under the MIT license shown below. The
 supporting files contained within the svn folder are licensed according to
 the licenses in the licenses subfolder.
 
-  Copyright (c) 2011 Will Bond <will@wbond.net>
+  Copyright (c) 2017 Martyn West
 
   Permission is hereby granted, free of charge, to any person obtaining a copy
   of this software and associated documentation files (the "Software"), to deal
