@@ -565,7 +565,7 @@ class NonInteractiveProcess():
 
         if stdout:
             # All sorts of grief here if don't convert to string it seems...
-            return str(stdout).replace('\r\n', '\n').rstrip(' \n\r')
+            return stdout.decode().replace('\r\n', '\n').rstrip(' \n\r')
         else:
             return ''
 
